@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Bonus Calculator</title>
+</head>
+<body>
+    <h1>Instructor Bonus Calculator</h1>
+    
+    <label for="rate">Baseline Rate per Person: </label>
+    <input type="number" id="rate" placeholder="Enter baseline rate"><br><br>
+
+    <label for="people">Number of People Attending: </label>
+    <input type="number" id="people" placeholder="Enter number of people"><br><br>
+
+    <button onclick="calculateBonus()">Calculate Total Compensation</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function calculateBonus() {
+            let rate = parseFloat(document.getElementById('rate').value);
+            let attendees = parseInt(document.getElementById('people').value);
+            let totalCompensation = rate * attendees;
+            let bonus = 0;
+
+            if (attendees >= 7 && attendees <= 15) {
+                bonus = (attendees - 6) * 5;
+            } else if (attendees > 15) {
+                bonus = (15 - 6) * 5 + (attendees - 15) * 7;
+            }
+
+            totalCompensation += bonus;
+
+            document.getElementById('result').innerText = "Total Compensation: $" + totalCompensation.toFixed(2);
+        }
+    </script>
+</body>
+</html>
